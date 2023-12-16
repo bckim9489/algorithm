@@ -33,7 +33,7 @@ n = int(input())
 ans = []
 for _ in range(n):
     row = int(input())
-    ans.append(g[row])
+    ans.append(g[row]) 
 
 #print(*ans, sep='\n')
 print('\n'.join(map(str, ans))+'\n')
