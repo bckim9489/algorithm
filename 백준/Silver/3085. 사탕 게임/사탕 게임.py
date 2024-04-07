@@ -1,7 +1,5 @@
 import sys
-
 result = 0
-
 n = int(input())
 board = []
 dx, dy = [0, 1], [1, 0]
