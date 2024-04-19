@@ -12,14 +12,15 @@ for i in range(n):
 
 ans = -10001
 
-def selected(px, idx, res):
+def selected(pnt, idx, res):
     global ans
     if idx == k:
         ans = max(ans, res)
         return
-    
+    px, py = pnt
+
     for x in range(px, n):
-        for y in range(m):
+        for y in range(py if px == x else 0, m):
             if visited[x][y]:
                 continue
             
@@ -33,7 +34,7 @@ def selected(px, idx, res):
 
             if flag:
                 visited[x][y] = True
-                selected(x, idx+1, res+graph[x][y])
+                selected((x,y), idx+1, res+graph[x][y])
                 visited[x][y] = False
-selected(0, 0, 0)
+selected((0,0), 0, 0)
 print(ans)
