@@ -1,24 +1,18 @@
 import sys
-
 t = int(input())
-ans = [0 for _ in range(t)]
+
+def selected2(cnt, sum, n):
+    if sum > n:
+        return 0
+    if sum == n:
+        return 1
     
-a = [1,2,3]
+    now = 0
 
-def selected(testIdx, res, n):
-    if res == n:
-        ans[testIdx] += 1
-        return
+    for i in range(1, 4):
+        now += selected2(cnt+1, sum+i, n)
     
-    for i in range(len(a)):
-        res += a[i]
-        if res > n:
-            break
-        selected(testIdx, res, n)
-        res -= a[i]
+    return now
 
-for i in range(t):
-    n = int(input())
-    selected(i, 0, n)
-
-print(*ans, sep="\n")
+for _ in range(t):
+    print(selected2(0, 0, int(input())))
