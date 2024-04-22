@@ -25,6 +25,11 @@ def selected(idx, startTeam, linkTeam):
         diff = abs(st_cost-li_cost)
         return diff
     
+    if len(startTeam) > n//2:
+        return -1
+    if len(linkTeam) > n//2:
+        return -1
+        
     ans = -1
     t1 = selected(idx+1, startTeam+[idx], linkTeam)
     if ans == -1 or (t1 != -1 and ans>t1):
