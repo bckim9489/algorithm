@@ -20,8 +20,10 @@ def selected(px, idx, singIdx):
     global ans_min
     global ans_max
     if idx == k+1:
-        ans_min = min("".join(res), ans_min)
-        ans_max = max("".join(res), ans_max)
+        if ans_min == str(sys.maxsize):
+            ans_min = min("".join(res), ans_min)
+        else:
+            ans_max = max("".join(res), ans_max)
         return
     
     for i in range(10):
