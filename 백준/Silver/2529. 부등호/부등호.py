@@ -13,15 +13,15 @@ def check(a, b, sign):
         return 1
     return 0
 
-ans_min = str(sys.maxsize)
+ans_min = ""
 ans_max = "-1"
 
 def selected(px, idx, singIdx):
     global ans_min
     global ans_max
     if idx == k+1:
-        if ans_min == str(sys.maxsize):
-            ans_min = min("".join(res), ans_min)
+        if ans_min == "":
+            ans_min = "".join(res)
         else:
             ans_max = max("".join(res), ans_max)
         return
