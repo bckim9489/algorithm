@@ -20,19 +20,16 @@ for i in range(n, 0, -1):
 
 def good(arr, idx):
     for i in range(0, idx+1):
-        for j in range(idx, idx+1):
-            if i > j:
-                continue
-            data = sum(arr[i:j+1])
-            if graph[i][j] == "-":         
-                if data >= 0:
-                    return False
-            if graph[i][j] == "+":
-                if data <= 0:
-                    return False
-            if graph[i][j] == "0":
-                if data != 0:
-                    return False
+        data = sum(arr[i:idx+1])
+        if graph[i][idx] == "-":         
+            if data >= 0:
+                return False
+        if graph[i][idx] == "+":
+            if data <= 0:
+                return False
+        if graph[i][idx] == "0":
+            if data != 0:
+                return False
     return True
             
 
