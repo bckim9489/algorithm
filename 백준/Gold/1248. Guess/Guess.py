@@ -18,17 +18,18 @@ for i in range(n):
         cnt += 1
     
 
-def good(arr, idx):
-    for i in range(0, idx+1):
-        data = sum(arr[i:idx+1])
+def good(idx):
+    s = 0
+    for i in range(idx, -1, -1):
+        s += res[i]
         if graph[i][idx] == -1:         
-            if data >= 0:
+            if s >= 0:
                 return False
         if graph[i][idx] == 1:
-            if data <= 0:
+            if s <= 0:
                 return False
         if graph[i][idx] == 0:
-            if data != 0:
+            if s != 0:
                 return False
     return True
             
@@ -56,7 +57,7 @@ def selected(idx):
         for i in range(start, end+1):
             res[idx] = i
             if idx > 0:
-                if good(res, idx) == False:
+                if good(idx) == False:
                     continue
             selected(idx+1)
 
