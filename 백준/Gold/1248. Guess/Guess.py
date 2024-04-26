@@ -36,29 +36,17 @@ def good(idx):
 
 def selected(idx):
     if idx == n :
-        print(*res, sep=" ")
-        sys.exit()
-    
-    start = 0
-    end = 0
-
-    if graph[idx][idx] == 1:
-        start = 1
-        end = 10
-
-    if graph[idx][idx] == -1:
-        start = -10
-        end = -1
+        return True
     
     if graph[idx][idx] == 0:
         res[idx] = 0
-        selected(idx+1)
-    else :
-        for i in range(start, end+1):
-            res[idx] = i
-            if idx > 0:
-                if good(idx) == False:
-                    continue
-            selected(idx+1)
+        return good(idx) and selected(idx+1)
+
+    for i in range(1, 11):
+        res[idx] = i * graph[idx][idx]
+        if good(idx) and selected(idx+1):
+            return True
+    return False
 
 selected(0)
+print(' '.join(map(str,res)))
