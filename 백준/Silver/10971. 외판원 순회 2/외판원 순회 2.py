@@ -28,6 +28,8 @@ def calc(arr):
 
 for tp in perm:
     arr = list(tp)
+    if arr[0] != 0:
+        break
     ans_min = min(ans_min, calc(arr))
 
 print(ans_min)
