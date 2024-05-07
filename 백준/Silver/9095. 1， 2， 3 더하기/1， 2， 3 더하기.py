@@ -1,18 +1,14 @@
 import sys
+
 t = int(input())
+dp = [0 for _ in range(11)]
+dp[0] = 1
+dp[1] = 1
+dp[2] = 2
 
-def selected2(res, n):
-    if res > n:
-        return 0
-    if res == n:
-        return 1
-    
-    now = 0
-
-    for i in range(1, 4):
-        now += selected2(res+i, n)
-    
-    return now
+for i in range(3, 11):
+    dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
 
 for _ in range(t):
-    print(selected2(0, int(input())))
+    n = int(input())
+    print(dp[n])    
