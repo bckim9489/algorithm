@@ -1,12 +1,8 @@
 import sys
 
 n = int(input())
+a = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 d = [[0]*3 for _ in range(n)]
-a = []
-
-for _ in range(n):
-    house = list(map(int, sys.stdin.readline().split()))
-    a.append(house)
 
 for i in range(n):
     d[i][0] = min(d[i-1][1], d[i-1][2])+a[i][0]
