@@ -1,34 +1,26 @@
 import sys
 sys.setrecursionlimit(10**9)
+N, M = map(int, sys.stdin.readline().split())
+g = [[0]*(N+1) for _ in range(N+1)]
+visited = [0]*(N+1)
 
-n, m = map(int, sys.stdin.readline().split())
-
-graph = {i:[] for i in range(n+1)}
-visited = [False]*(n+1)
-result = []
-route = []
-
-for _ in range(m):
+for _ in range(M):
     u, v = map(int, sys.stdin.readline().split())
-    graph[u].append(v)
-    if v in graph:
-        graph[v].append(u)
+    g[u][v], g[v][u] = 1, 1
 
-def dfs(graph, start):
-    
-    if visited[start]:
-        return 
+cnt = 0
 
-    visited[start] = True
-    route.append(start)
+def dfs(now, visited):
+    if visited[now]:
+        return 0
 
-    for now in graph[start]:
-        dfs(graph, now)
-   
-for i in range(1, n+1):
-    route = []
-    dfs(graph, i)
-    if route:
-        result.append(route)
+    visited[now] = 1
+    for idx, value in enumerate(g[now]): 
+        if value != 0 and visited[idx] == 0:
+            dfs(idx, visited)
+    return 1
 
-print(len(result))
+for i in range(1, N+1):
+    cnt += dfs(i, visited)
+
+print(cnt)
